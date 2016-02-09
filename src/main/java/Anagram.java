@@ -36,8 +36,17 @@ public class Anagram {
 
       String phrase = request.queryParams("phrase");
       ArrayList<String> anagramsInPhrase = anagramsInPhrase(phrase);
+      String liDisplay = "";
+      for (String anagramWord : anagramsInPhrase) {
+        liDisplay += "<li>" + anagramWord + "</li>";
+      }
+      //create big string variable
+      //for each word in anagrams
+        //add <li>word</li> to big string
+      //return big string
+      //print big string to page
 
-      model.put("phraseAnagrams", anagramsInPhrase);
+      model.put("phraseAnagrams", liDisplay);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
