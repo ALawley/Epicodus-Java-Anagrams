@@ -8,4 +8,9 @@ public class AnagramTest {
     Anagram newAnagram = new Anagram();
     assertEquals(true, newAnagram.isAnagram("a", "a"));
   }
+  @Test
+  public void isAnagram_forTwoAnagramWords_true() {
+    Anagram newAnagram = new Anagram();
+    assertEquals(true, newAnagram.isAnagram("taco", "coat"));
+  }
 }
