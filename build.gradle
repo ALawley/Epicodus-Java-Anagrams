@@ -1,9 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-archivesBaseName = "project-name"
+archivesBaseName = "anagram"
 version = '1.0'
-mainClassName = "MainClass"
+mainClassName = "Anagram"
 
 repositories {
  mavenCentral()
