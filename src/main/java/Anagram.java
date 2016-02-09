@@ -1,10 +1,49 @@
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
 
 public class Anagram {
-  public static void main(String[] args) {}
+  public static void main(String[] args) {
+    String layout = "templates/layout.vtl";
 
-  public Boolean isAnagram(String input1, String input2) {
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/anagram-word", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/anagram-word.vtl");
+
+      String word1 = request.queryParams("word1");
+      String word2 = request.queryParams("word2");
+      Boolean isAnagram = isAnagram(word1, word2);
+
+      model.put("isAnagram", isAnagram);
+      model.put("word1", request.queryParams("word1"));
+      model.put("word2", request.queryParams("word2"));
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/anagram-phrase", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/anagram-phrase.vtl");
+
+      String phrase = request.queryParams("phrase");
+      ArrayList<String> anagramsInPhrase = anagramsInPhrase(phrase);
+
+      model.put("phraseAnagrams", anagramsInPhrase);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+  }
+
+  public static Boolean isAnagram(String input1, String input2) {
     char[] input1Letters = input1.toCharArray();
     char[] input2Letters = input2.toCharArray();
     Arrays.sort(input1Letters);
@@ -15,7 +54,7 @@ public class Anagram {
       return false;
     }
   }
-  public ArrayList<String> anagramsInPhrase(String input) {
+  public static ArrayList<String> anagramsInPhrase(String input) {
     ArrayList<String> trueAnagrams = new ArrayList<String>();
     ArrayList<char[]> wordLetters = new ArrayList<char[]>();
     String[] words = input.toLowerCase().split(" ");

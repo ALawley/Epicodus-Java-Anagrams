@@ -22,6 +22,6 @@ public class AnagramTest {
     results.add("cat");
     results.add("arm");
     results.add("ram");
-    assertEquals(results, newAnagram.anagramsInPhrase("act cat arm ram sheep"));
+    assertEquals(results, newAnagram.anagramsInPhrase("act Cat arm ram sheep"));
   }
 }

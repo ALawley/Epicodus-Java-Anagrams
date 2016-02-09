@@ -1,0 +1,26 @@
+<h1>Anagram Finder</h1>
+
+<p>Find out if two words are anagrams.  Submit two words and we will tell you if they're anagrams!</p>
+
+<form action='/anagram-word' method='get'>
+  <div class="form-group">
+    <label for="word1">Word One</label>
+    <input id="word1" name="word1" class="form-control" type="text">
+  </div>
+  <div class="form-group">
+    <label for="word2">Word Two</label>
+    <input id="word2" name="word2" class="form-control" type="text">
+  </div>
+
+  <button type="submit" class="btn btn-info">Are they anagrams?</button>
+</form>
+
+<p>Type in a short phrase and we'll give you any anagram matches!</p>
+<form action='/anagram-phrase' method='get'>
+  <div class="form-group">
+    <label for="phrase">Phrase</label>
+    <input id="phrase" name="phrase" class="form-control" type="text">
+  </div>
+
+  <button type="submit" class="btn btn-info">Show me all anagrams!</button>
+</form>
