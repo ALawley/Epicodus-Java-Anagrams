@@ -15,4 +15,29 @@ public class Anagram {
       return false;
     }
   }
+  public ArrayList<String> anagramsInPhrase(String input) {
+    ArrayList<String> trueAnagrams = new ArrayList<String>();
+    ArrayList<char[]> wordLetters = new ArrayList<char[]>();
+    String[] words = input.toLowerCase().split(" ");
+    for ( String word : words ) {
+      wordLetters.add(word.toCharArray());
+    }
+    for ( char[] letterGroup : wordLetters ) {
+      Arrays.sort(letterGroup);
+    }
+    for ( Integer i = 0; i < wordLetters.size(); i++ ) {
+      for ( Integer j = 0; j < wordLetters.size(); j++ ) {
+        if (Arrays.equals(wordLetters.get(i), wordLetters.get(j)) &&  i != j ) {
+          trueAnagrams.add(words[i]);
+        }
+      }
+    }
+    return trueAnagrams;
+  }
 }
+
+// split into array of strings
+// for each split into char array, add to array list (array of character arrays)
+// for each item of array list, sort letters
+// for each item of array list, compare to (another for each) each item in array. If true, add to solved array
+// How do we add original word to solved array with just the ordered letters?
